@@ -42,11 +42,12 @@ wcflatmap = lines.flatMap(lambda x:titlecountmap(x))
 
 
 wc = wcflatmap.map(lambda x: (x,1))
-
+print("lauda")
 print(wc.take(30))
-
+print("lauda")
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
+print("lauda")
 print(wcreduce.take(10))
 
 
