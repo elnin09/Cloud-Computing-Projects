@@ -38,10 +38,10 @@ def titlecountmap(line):
     return retval
     
 
-print(lines.collect())
+lines.take(10).foreach(print)
 print("lauda")
 
-wc = lines.flatMap(lambda x: titlecountmap(x))
+wc = lines.map(lambda x: titlecountmap(x))
 
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
