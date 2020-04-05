@@ -19,7 +19,7 @@ def mapperfunction(line):
     key,value = (line.rstrip('\n')).split(':',1);
     values = re.split(" ",value.lstrip(' '));
     for i in values:
-        retval.append(i,i,key.rstrip('\n'))
+        retval.append((i,key.rstrip('\n')))
     return retval
     
 def mapfunction(x):
