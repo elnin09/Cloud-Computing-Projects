@@ -12,7 +12,7 @@ lines = sc.textFile(sys.argv[1], 1)
 #TODO
 
 output = open(sys.argv[2], "w")
-
+sys.stdout = output
 
 def mapperfunction(line):
     retval=list()
