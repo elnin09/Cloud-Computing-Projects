@@ -38,7 +38,8 @@ def titlecountmap(line):
     return retval
     
 
-lines.take(10).foreach(print)
+for line in lines.take(10):
+    print(line)
 print("lauda")
 
 wc = lines.map(lambda x: titlecountmap(x))
