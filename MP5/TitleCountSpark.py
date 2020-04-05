@@ -44,8 +44,8 @@ reduce = wc.reduceByKey(lambda a, b: a + b)
 #TODO
 
 outputFile = open(sys.argv[4],"w")
-for x in reduce.collect():
-    print(x)
+
+print(reduce)
 
 
 #TODO
