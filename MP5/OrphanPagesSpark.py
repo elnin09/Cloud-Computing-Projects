@@ -24,8 +24,8 @@ def mapperfunction(line):
     
 def mapfunction(x):
     retval = list()
-    retval.append(x[0],1)
-    retval.append(x[1],0) 
+    retval.append((x[0],1))
+    retval.append((x[1],0))
 
 def reducehelper(x):
     if(int(x[1]) == 0):
