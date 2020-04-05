@@ -47,7 +47,7 @@ wc = wcflatmap.map(lambda x: (x,1))
 #print("lauda")
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
-valuesorted = wcreduce.sortBy(lambda a: -a[1])
+valuesorted = wcreduce.sortBy(lambda a: -a[1]).collect(20)
 valuefinesorted = wcreduce.sortBy(lambda a: a[0])
 
 
