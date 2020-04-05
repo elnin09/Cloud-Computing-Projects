@@ -23,6 +23,8 @@ def mapperfunction(line):
     return retval
     
 def mapfunction(x):
+    if(x is None):
+        return
     key,value = x
     retval = list()
     retval.append((key,1))
