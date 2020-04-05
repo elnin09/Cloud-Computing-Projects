@@ -31,6 +31,7 @@ def mapfunction(x):
     retval = list()
     retval.append((key,1))
     retval.append((value,0))
+    return retval
 
 def reducehelper(x):
     if(int(x[1]) == 0):
