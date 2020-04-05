@@ -55,7 +55,7 @@ print(wcreduce.take(30))
 
 valuesorted = wcreduce.sortBy(lambda a: a[0])
 
-
+valuesorted = valuesorted.collect()
 for i in valuesorted:
     print(i)
 
