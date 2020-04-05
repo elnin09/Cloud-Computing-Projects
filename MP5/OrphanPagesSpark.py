@@ -36,7 +36,7 @@ def mapfunction(x):
 def reducehelper(x):
     retval = list()
     if(int(x[1]) == 0):
-        retval.append(x[1])
+        retval.append(x[0])
     return retval  
 
 print("Luada 1")
