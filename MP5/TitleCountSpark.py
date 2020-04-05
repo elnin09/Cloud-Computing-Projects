@@ -38,14 +38,14 @@ def titlecountmap(line):
 
 wc = lines.flatMap(lambda x: titlecountmap(x))
 
-reduce = wc.reduceByKey(lambda a, b: a + b)
+wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
 
 #TODO
 
 outputFile = open(sys.argv[4],"w")
-
-print(reduce)
+sys.stdout = outputFile
+print(wcreduce)
 
 
 #TODO
