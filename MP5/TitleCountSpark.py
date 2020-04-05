@@ -38,7 +38,7 @@ def titlecountmap(line):
     return retval
     
 
-print(lines)
+print(lines.collect())
 print("lauda")
 
 wc = lines.flatMap(lambda x: titlecountmap(x))
