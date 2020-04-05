@@ -34,17 +34,14 @@ def titlecountmap(line):
     words=re.split(delimiters,line.lower());
     for word in words:
         if word not in stopwords and word != '':
-            retval.append((word,1))
+            retval.append(word)
     return retval
     
 
-def myprint(line):
-    print(line)
+wcflatmap = lines.flatMap(lambda x:titlecountmap(x))
 
-print(lines.take(10))
-print("lauda")
 
-wc = lines.map(lambda x: titlecountmap(x))
+wc = wcflatmap.map(lambda x: (x,1))
 
 print(wc.take(30))
 
