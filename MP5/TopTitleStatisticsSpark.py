@@ -28,7 +28,7 @@ ans3 = wc.min()
 outputFile.write('Min\t%s\n' % ans3)
 ans4 = wc.max()
 outputFile.write('Max\t%s\n' % ans4)
-ans5 = wc.var()
+ans5 = wc.variance()
 outputFile.write('Var\t%s\n' % ans5)
 
 
