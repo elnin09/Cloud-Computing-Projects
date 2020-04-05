@@ -44,6 +44,9 @@ reduce = wc.reduceByKey(lambda a, b: a + b)
 #TODO
 
 outputFile = open(sys.argv[4],"w")
+for x in reduce.collect():
+    print(x)
+
 
 #TODO
 #write results to output file. Foramt for each line: (line +"\n")
