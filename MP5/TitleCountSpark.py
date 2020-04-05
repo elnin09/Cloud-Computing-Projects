@@ -48,8 +48,8 @@ wc = wcflatmap.map(lambda x: (x,1))
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
 valuesorted = wcreduce.sortBy(lambda a: -a[1])
-valuesorted = valuesorted.limit(10)
-valuefinesorted = wcreduce.sortBy(lambda a: a[0])
+valuesorted = valuesorted.take(10)
+valuefinesorted = valuesorted.sortBy(lambda a: a[0])
 
 
 finallist = valuefinesorted.take(10)
