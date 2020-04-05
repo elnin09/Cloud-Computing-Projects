@@ -46,14 +46,18 @@ print("lauda")
 
 wc = lines.map(lambda x: titlecountmap(x))
 
+print(wc.take(30))
+
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
+
+print(wcreduce.take(10))
 
 
 #TODO
 
 
 
-print(wcreduce.collect())
+#print(wcreduce.collect())
 
 
 #TODO
