@@ -12,7 +12,7 @@ lines = sc.textFile(sys.argv[1],1)
 
 def mymap(x):
     mapoutputkey,mapoutputcount = x.split('\t', 1)
-    return mapoutputcount
+    return int(mapoutputcount)
 
 wc = lines.map(mymap)
 
@@ -20,7 +20,7 @@ outputFile = open(sys.argv[2],"w")
 
 #TODO write your output here
 #write results to output file. Format
-ans1 = wc.sum()/10
+ans1 = wc.sum()/wc.count()
 outputFile.write('Mean\t%s\n' % ans1)
 ans2 = wc.sum()
 outputFile.write('Sum\t%s\n' % ans2)
