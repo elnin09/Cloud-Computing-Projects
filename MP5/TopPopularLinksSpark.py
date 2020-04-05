@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 from pyspark import SparkConf, SparkContext
+import re
 
 conf = SparkConf().setMaster("local").setAppName("TopPopularLinks")
 conf.set("spark.driver.bindAddress", "127.0.0.1")
