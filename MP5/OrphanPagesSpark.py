@@ -45,19 +45,16 @@ wc = wcflatmap.flatMap(lambda x: mapfunction(x));
 #print(wc.take(30))
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 #print(wcreduce.take(30))
+wcreduce = wcreduce.flatMap(lambda x: reducehelper(x));
 #print(wcreduce.take(30))
 
 
 #valuesorted = wcreduce.sortBy(lambda a: a[0])
 
-valuesorted = wcreduce.sortBy(lambda a: -a[1])
-valuesorted = valuesorted.take(10)
-
-
-
-finallist = valuesorted.sort(key = lambda x: x[0])
-for i in valuesorted:
-    print('%s\t%s' % (i[0], i[1]) )
+valuesorted = valuesorted.collect()
+finallist = valuesorted.sort(key = lambda x: x)
+for i in finallist:
+    print(i)
 
 #TODO
 #write results to output file. Foramt for each line: (line+"\n")
