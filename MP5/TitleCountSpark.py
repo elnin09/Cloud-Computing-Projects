@@ -27,7 +27,7 @@ lines = sc.textFile(sys.argv[3],1)
 
 outputFile = open(sys.argv[4],"w")
 sys.stdout = outputFile
-print("lauda")
+#print("lauda")
 
 def titlecountmap(line):
     retval = list()
@@ -42,18 +42,18 @@ wcflatmap = lines.flatMap(lambda x:titlecountmap(x))
 
 
 wc = wcflatmap.map(lambda x: (x,1))
-print("lauda")
-print(wc.take(30))
-print("lauda")
+#print("lauda")
+#print(wc.take(30))
+#print("lauda")
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
 valuesorted = wcreduce.sortBy(lambda a: -a[1])
+valuefinesorted = wcreduce.sortBy(lambda a: a[0])
 
 
-print("lauda")
-print(valuesorted.take(10))
-
-
+finallist = valuesorted.take(10)
+for i in finallist:
+    print('%s\t%s' % (i[0], i[1]) )
 #TODO
 
 
