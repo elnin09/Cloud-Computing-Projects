@@ -12,7 +12,7 @@ lines = sc.textFile(sys.argv[1],1)
 
 def mymap(x):
     mapoutputkey,mapoutputcount = x.split('\t', 1)
-    return (mapoutputkey,mapoutputcount)
+    return mapoutputcount
 
 wc = lines.map(mymap)
 
