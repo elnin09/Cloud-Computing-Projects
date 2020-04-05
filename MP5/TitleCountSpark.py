@@ -46,6 +46,7 @@ print("lauda")
 print(wc.take(30))
 print("lauda")
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
+wcreduce.sortByKey(False)
 
 print("lauda")
 print(wcreduce.take(10))
