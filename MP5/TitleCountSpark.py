@@ -32,6 +32,7 @@ def titlecountmap(line):
     for word in words:
         if word not in stopwords and word != '':
             retval.append((word,1))
+    return retval
     
 
 
