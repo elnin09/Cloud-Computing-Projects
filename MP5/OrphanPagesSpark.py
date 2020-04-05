@@ -40,18 +40,18 @@ def reducehelper(x):
     return retval  
 
 wcflatmap = lines.flatMap(lambda x:mapperfunction(x))
-print(wcflatmap.take(10))
+#print(wcflatmap.take(10))
 wc = wcflatmap.flatMap(lambda x: mapfunction(x));
-print(wc.take(30))
+#print(wc.take(30))
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
-print(wcreduce.take(30))
+#print(wcreduce.take(30))
 wcreduce = wcreduce.flatMap(lambda x: reducehelper(x));
-print(wcreduce.take(30))
+#print(wcreduce.take(30))
 
 
 #valuesorted = wcreduce.sortBy(lambda a: a[0])
 
-valuesorted = valuesorted.collect()
+valuesorted = wcreduce.collect()
 finallist = valuesorted.sort(key = lambda x: x)
 for i in finallist:
     print(i)
