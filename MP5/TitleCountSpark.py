@@ -45,7 +45,7 @@ wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
 outputFile = open(sys.argv[4],"w")
 sys.stdout = outputFile
-print(wcreduce)
+print(wcreduce.collect())
 
 
 #TODO
