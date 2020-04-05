@@ -52,7 +52,7 @@ valuesorted = valuesorted.take(10)
 
 
 
-finallist = valuesorted.sort()
+finallist = valuesorted.sort(key = lambda x: x[0])
 for i in finallist:
     print('%s\t%s' % (i[0], i[1]) )
 #TODO
