@@ -52,7 +52,7 @@ wcreduce = wcreduce.flatMap(lambda x: reducehelper(x));
 #valuesorted = wcreduce.sortBy(lambda a: a[0])
 
 valuesorted = wcreduce.collect()
-#finallist = valuesorted.sort(key = lambda x: x)
+finallist = valuesorted.sort()
 for i in valuesorted:
     print(i)
 
