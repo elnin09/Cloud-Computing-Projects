@@ -49,10 +49,11 @@ wcreduce = wcreduce.flatMap(lambda x: reducehelper(x));
 print(wcreduce.take(30))
 
 
-valuesorted = wcreduce.sortBy(lambda a: a[0])
+#valuesorted = wcreduce.sortBy(lambda a: a[0])
 
 valuesorted = valuesorted.collect()
-for i in valuesorted:
+finallist = valuesorted.sort(key = lambda x: x)
+for i in finallist:
     print(i)
 
 #TODO
