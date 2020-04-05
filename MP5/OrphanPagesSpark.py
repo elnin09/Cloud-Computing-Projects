@@ -34,8 +34,10 @@ def mapfunction(x):
     return retval
 
 def reducehelper(x):
+    retval = list()
     if(int(x[1]) == 0):
-        return str(x[0])
+        retval.append(x[1])
+    return retval  
 
 print("Luada 1")
 wcflatmap = lines.flatMap(lambda x:mapperfunction(x))
