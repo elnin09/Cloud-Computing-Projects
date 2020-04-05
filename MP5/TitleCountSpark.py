@@ -51,7 +51,7 @@ valuesorted = wcreduce.sortBy(lambda a: -a[1])
 valuefinesorted = wcreduce.sortBy(lambda a: a[0])
 
 
-finallist = valuesorted.take(10)
+finallist = valuefinesorted.take(10)
 for i in finallist:
     print('%s\t%s' % (i[0], i[1]) )
 #TODO
