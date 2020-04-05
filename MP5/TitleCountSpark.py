@@ -25,6 +25,9 @@ sc = SparkContext(conf = conf)
 
 lines = sc.textFile(sys.argv[3],1)
 
+outputFile = open(sys.argv[4],"w")
+sys.stdout = outputFile
+print("lauda")
 
 def titlecountmap(line):
     retval = list()
@@ -35,7 +38,8 @@ def titlecountmap(line):
     return retval
     
 
-
+print(lines)
+print("lauda")
 
 wc = lines.flatMap(lambda x: titlecountmap(x))
 
@@ -44,8 +48,8 @@ wcreduce = wc.reduceByKey(lambda a, b: a + b)
 
 #TODO
 
-outputFile = open(sys.argv[4],"w")
-sys.stdout = outputFile
+
+
 print(wcreduce.collect())
 
 
