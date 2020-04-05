@@ -22,10 +22,10 @@ def mapperfunction(line):
         retval.append((i,key.rstrip('\n')))
     return retval
     
-def mapfunction(x):
+def mapfunction(key,value):
     retval = list()
-    retval.append((x[0],1))
-    retval.append((x[1],0))
+    retval.append((key,1))
+    retval.append((value,0))
 
 def reducehelper(x):
     if(int(x[1]) == 0):
@@ -35,7 +35,7 @@ print("Luada 1")
 wcflatmap = lines.flatMap(lambda x:mapperfunction(x))
 print(wcflatmap.take(10))
 print("Lauda 2")
-wc = wcflatmap.flatMap(lambda x: mapfunction(x));
+wc = wcflatmap.flatMap(lambda a, b: mapfunction(a,b));
 print(wc.take(30))
 print("lauda3")
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
