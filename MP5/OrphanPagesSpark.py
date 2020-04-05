@@ -25,8 +25,8 @@ def mapperfunction(line):
 def mapfunction(x):
     if(x is None):
         return
-    print("Fuck")
-    print(x)
+    
+    #print(x)
     key,value = x
     retval = list()
     retval.append((key,1))
