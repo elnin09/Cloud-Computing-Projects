@@ -39,16 +39,12 @@ def reducehelper(x):
         retval.append(x[0])
     return retval  
 
-print("Luada 1")
 wcflatmap = lines.flatMap(lambda x:mapperfunction(x))
 print(wcflatmap.take(10))
-print("Lauda 2")
 wc = wcflatmap.flatMap(lambda x: mapfunction(x));
 print(wc.take(30))
-print("lauda3")
 wcreduce = wc.reduceByKey(lambda a, b: a + b)
 print(wcreduce.take(30))
-print("lauda3")
 wcreduce = wcreduce.flatMap(lambda x: reducehelper(x));
 print(wcreduce.take(30))
 
