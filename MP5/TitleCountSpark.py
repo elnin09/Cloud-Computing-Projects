@@ -41,7 +41,7 @@ def titlecountmap(line):
 def myprint(line):
     print(line)
 
-lines.take(10).foreach(myprint)
+print(lines.take(10))
 print("lauda")
 
 wc = lines.map(lambda x: titlecountmap(x))
