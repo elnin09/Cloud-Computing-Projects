@@ -5,13 +5,12 @@ import org.apache.storm.redis.common.mapper.RedisStoreMapper;
 import org.apache.storm.tuple.ITuple;
 
 public class TopNStoreMapper implements RedisStoreMapper {
-  private RedisDataTypeDescription description;
+  private final RedisDataTypeDescription description;
   private final String hashKey;
 
-  public TopNStoreMapper(String hashKey) {
+  public TopNStoreMapper(final String hashKey) {
     this.hashKey = hashKey;
-    description =
-        new RedisDataTypeDescription(RedisDataTypeDescription.RedisDataType.HASH, hashKey);
+    description = new RedisDataTypeDescription(RedisDataTypeDescription.RedisDataType.HASH, hashKey);
   }
 
   @Override
@@ -20,17 +19,15 @@ public class TopNStoreMapper implements RedisStoreMapper {
   }
 
   @Override
-  public String getKeyFromTuple(ITuple tuple) {
-
-      return tuple.getStringByField("word");
-		// End
+  public String getKeyFromTuple(final ITuple tuple) {
+    return tuple.getStringByField("word");
+    // End
   }
 
   @Override
-  public String getValueFromTuple(ITuple tuple) {
-
+  public String getValueFromTuple(final ITuple tuple) 
+  {
      return tuple.getStringByField("count");
-
 		// End
   }
 }
