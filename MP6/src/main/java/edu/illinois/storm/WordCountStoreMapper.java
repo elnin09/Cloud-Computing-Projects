@@ -5,13 +5,12 @@ import org.apache.storm.redis.common.mapper.RedisStoreMapper;
 import org.apache.storm.tuple.ITuple;
 
 public class WordCountStoreMapper implements RedisStoreMapper {
-  private RedisDataTypeDescription description;
+  private final RedisDataTypeDescription description;
   private final String hashKey;
 
-  public WordCountStoreMapper(String hashKey) {
+  public WordCountStoreMapper(final String hashKey) {
     this.hashKey = hashKey;
-    description =
-        new RedisDataTypeDescription(RedisDataTypeDescription.RedisDataType.HASH, hashKey);
+    description = new RedisDataTypeDescription(RedisDataTypeDescription.RedisDataType.HASH, hashKey);
   }
 
   @Override
@@ -20,19 +19,15 @@ public class WordCountStoreMapper implements RedisStoreMapper {
   }
 
   @Override
-  public String getKeyFromTuple(ITuple tuple) {
-    /* ----------------------TODO-----------------------
-    Task: define which part of the tuple as the key
-    ------------------------------------------------- */
+  public String getKeyFromTuple(final ITuple tuple) {
+
     return tuple.getStringByField("word");
-		// End
+    // End
   }
 
   @Override
-  public String getValueFromTuple(ITuple tuple) {
-    /* ----------------------TODO-----------------------
-    Task: define which part of the tuple as the value
-    ------------------------------------------------- */
+  public String getValueFromTuple(final ITuple tuple) {
+ 
     return tuple.getStringByField("count");
 		// End
   }

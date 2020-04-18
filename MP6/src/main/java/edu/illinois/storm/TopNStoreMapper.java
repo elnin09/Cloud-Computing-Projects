@@ -21,18 +21,14 @@ public class TopNStoreMapper implements RedisStoreMapper {
 
   @Override
   public String getKeyFromTuple(ITuple tuple) {
-    /* ----------------------TODO-----------------------
-    Task: define which part of the tuple as the key
-    ------------------------------------------------- */
+
       return tuple.getStringByField("word");
 		// End
   }
 
   @Override
   public String getValueFromTuple(ITuple tuple) {
-    /* ----------------------TODO-----------------------
-    Task: define which part of the tuple as the value
-    ------------------------------------------------- */
+
      return tuple.getStringByField("count");
 
 		// End
