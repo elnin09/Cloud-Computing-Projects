@@ -22,7 +22,8 @@ class CountBolt(storm.BasicBolt):
         self._counter[word] += 1
         count = self._counter[word]
         storm.emit([word,count])
-        storm.logInfo("Emitting %s %s" %word %count)
+        storm.logInfo("Word %s" %word)
+        storm.logInfo("Count %s" %count)
         pass
         # End
 
