@@ -114,7 +114,8 @@ streams:
     from: "count"
     to: "topN"
     grouping:
-      type: SHUFFLE
+      type: FIELDS
+      args: ["word","count"]
   
   - name: "topN --> store"
     from: "topN"
