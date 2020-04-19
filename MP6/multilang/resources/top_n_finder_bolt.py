@@ -41,9 +41,12 @@ class TopNFinderBolt(storm.BasicBolt):
         
         mytopN = "top-N"
         values= ""
-
+        counter = 0
         for i in self._topN.keys():
-            values = values + "," + i
+            if counter == 0:
+                values = values + i
+            else:
+                values = values + "," + i
          
         storm.logInfo("betichod") 
         storm.logInfo("Emitting %s:%s" % (mytopN, values))
