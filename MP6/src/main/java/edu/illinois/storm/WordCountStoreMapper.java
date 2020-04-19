@@ -21,16 +21,15 @@ public class WordCountStoreMapper implements RedisStoreMapper {
   @Override
   public String getKeyFromTuple(final ITuple tuple) {
 
-    return "sample";
-    //return tuple.getStringByField("word");
-    // End
+
+    return tuple.getStringByField("word");
+     
   }
 
   @Override
   public String getValueFromTuple(final ITuple tuple) 
   {
-  return "sample"; 
-    //return tuple.getStringByField("count");
+     return tuple.getStringByField("count");
 		// End
   }
 }
