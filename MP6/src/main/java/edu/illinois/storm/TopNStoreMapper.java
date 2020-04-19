@@ -20,7 +20,7 @@ public class TopNStoreMapper implements RedisStoreMapper {
 
   @Override
   public String getKeyFromTuple(final ITuple tuple) {
-    return tuple.getStringByField("topN");
+    return tuple.getStringByField("top-N");
     // End
   }
 

@@ -84,7 +84,7 @@ bolts:
       # Command line
       - ["python", "top_n_finder_bolt.py"]
       # Output field(s)
-      - ["word","count"]
+      - ["top-N","values"]
     parallelism: 1    
  
 
