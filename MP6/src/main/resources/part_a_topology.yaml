@@ -1,4 +1,4 @@
-# Licensed to the Apache Software Foundation (ASF) under one
+ Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
@@ -22,15 +22,13 @@ name: "part-A"
 
 # topology configuration
 # this will be passed to the submitter as a map of config options
+#
 config:
     storm.local.hostname: "localhost"
     topology.max.task.parallelism: 3
     # set this to true if you want to see more debug log
-    # set it to false before submitting
     topology.debug: true
-    # Hint: you can set input file path here
-    # make sure it's "/tmp/data.txt" in your final submission
-    
+    mp4.datafile: "/grader/MP4Grader/data.txt"
 
 components:
   - id: "poolConfig"
@@ -39,51 +37,72 @@ components:
       - "localhost"
       - 6379
       - 2000
-      - "uiuc_cs498_mp6"
+      - "uiuc_cs498_mp4"
       - 0
+
   - id: "storeMapper"
     className: "edu.illinois.storm.WordCountStoreMapper"
     constructorArgs:
-      - "partAWordCount"
-
-  # TODO
-  # Task: implement the redis store mapper
-  # src/main/java/edu/illinois/storm/WordCountStoreMapper.java
-  # className: "edu.illinois.storm.WordCountStoreMapper"
-  # redis hash key for part A is "partAWordCount"
+        - "partAWordCount"
 
 # spout definitions
 spouts:
+  - id: "spout"
+    className: "org.apache.storm.flux.wrappers.spouts.FluxShellSpout"
+    constructorArgs:
+      # Command line
+      - ["python", "random_sentence_spout.py"]
+      # Output field(s)
+      - ["sentence"]
+    # parallelism hint
+    parallelism: 1
 
+# bolt definitions
 bolts:
+  - id: "split"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "split_sentence_bolt.py"]
+      # Output field(s)
+      - ["word"]
+    parallelism: 8
 
- 
-  # TODO
-  # Task: implement the split sentences bolt
-  # multilang/resources/split_sentence_bolt.py
+  - id: "count"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "word_count_bolt.py"]
+      # Output field(s)
+      - ["word","count"]
+    parallelism: 12
 
-  # TODO
-  # Task: implement the word count bolt
-  # multilang/resources/word_count_bolt.py
+  - id: "store"
+    className: "org.apache.storm.redis.bolt.RedisStoreBolt"
+    constructorArgs:
+      - ref: "poolConfig"
+      - ref: "storeMapper"
+    parallelism: 1
 
-
-
-
- 
-  # TODO
-  # Task: initialize RedisStoreBolt using poolConfig and storeMapper
-  # ClassName is "org.apache.storm.redis.bolt.RedisStoreBolt"
-
-# stream definitions
+#stream definitions
 # stream definitions define connections between spouts and bolts.
+# note that such connections can be cyclical
 streams:
-  # TODO
-  # Task: pipe output of sentences generating spout to split bolt
+  - name: "spout --> split"
+    from: "spout"
+    to: "split"
+    grouping:
+      type: SHUFFLE
 
+  - name: "split --> count"
+    from: "split"
+    to: "count"
+    grouping:
+      type: FIELDS
+      args: ["word"]
 
-  # TODO
-  # Task: pipe output of split bolt to word count bolt
-  # Hint: choose the right grouping type to make problem easier
-
-  # TODO
-  # Task: pipe output of word count bolt to redis store bolt
+  - name: "count --> store"
+    from: "count"
+    to: "store"
+    grouping:
+      type: SHUFFLE
