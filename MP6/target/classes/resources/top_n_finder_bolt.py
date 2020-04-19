@@ -30,7 +30,7 @@ class TopNFinderBolt(storm.BasicBolt):
         '''
         word = tup.values[0]
         count = float(tup.values[1])
-        storm.logInfo("Emitting laida lasan %s:%s" % (word, count))
+        storm.logInfo("Emitting %s:%s" % (word, count))
 
         self._topN[word]=count
         
@@ -47,8 +47,8 @@ class TopNFinderBolt(storm.BasicBolt):
                 values = values + i
             else:
                 values = values + "," + i
+            counter += 1
          
-        storm.logInfo("betichod") 
         storm.logInfo("Emitting %s:%s" % (mytopN, values))
         storm.emit([mytopN,values])
 
