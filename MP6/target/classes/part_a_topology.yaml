@@ -16,13 +16,10 @@
 
 ---
 
-# topology definition
-# name to be used when submitting
+
 name: "part-A"
 
-# topology configuration
-# this will be passed to the submitter as a map of config options
-#
+
 config:
     storm.local.hostname: "localhost"
     topology.max.task.parallelism: 3
@@ -47,7 +44,7 @@ components:
     constructorArgs:
       - "partAWordCount"
 
-# spout definitions
+
 spouts:
   - id: "spout"
     className: "org.apache.storm.flux.wrappers.spouts.FluxShellSpout"
@@ -59,7 +56,7 @@ spouts:
     # parallelism hint
     parallelism: 1
 
-# bolt definitions
+
 bolts:
   - id: "split"
     className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
@@ -86,9 +83,7 @@ bolts:
       - ref: "storeMapper"
     parallelism: 1
 
-#stream definitions
-# stream definitions define connections between spouts and bolts.
-# note that such connections can be cyclical
+
 streams:
   - name: "spout --> split"
     from: "spout"

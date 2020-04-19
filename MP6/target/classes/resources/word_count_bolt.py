@@ -10,7 +10,7 @@ class CountBolt(storm.BasicBolt):
         self._conf = conf
         self._context = context
         self._counter = Counter()
-        storm.logInfo("Counter bolt instance starting...")
+        #storm.logInfo("Counter bolt instance starting...")
 
         # Hint: Add necessary instance variables and classes if needed
 
