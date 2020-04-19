@@ -33,9 +33,9 @@ class TopNFinderBolt(storm.BasicBolt):
         storm.logInfo("Emitting laida lasan %s:%s" % (word, count))
 
         self._topN[word]=count
-        self._len +=1
+        
 
-        if self._len>10:
+        while len(self._topN) > 10:
             key_to_delete = min(self._topN.keys(), key=lambda k: self._topN[k])
             del self._topN[key_to_delete]
         
