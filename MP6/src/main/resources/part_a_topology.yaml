@@ -49,13 +49,24 @@ components:
 
 # spout definitions
 spouts:
-  # TODO
-  # Task: implement the random sentence spout
-  # multilang/resources/random_sentence_spout.py
-  # Hint: you need to define output field(s) here when using FluxShellSpout
-
-# bolt definitions
+  - id: "sentence-spout"
+    className: "org.apache.storm.flux.wrappers.spouts.FluxShellSpout"
+    constructorArgs:
+      # Command line
+      - ["python", "random_sentence_spout.py"]
+      # Output field(s)
+      - ["sentence"]
+    parallelism: 1
 bolts:
+
+  - id: "splitter-bolt"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "split_sentence_bolt.py"]
+      # Output field(s)
+      - ["word"]
+    parallelism: 1
   # TODO
   # Task: implement the split sentences bolt
   # multilang/resources/split_sentence_bolt.py
@@ -63,6 +74,23 @@ bolts:
   # TODO
   # Task: implement the word count bolt
   # multilang/resources/word_count_bolt.py
+  - id: "counter-bolt"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "word_count_bolt.py"]
+      # Output field(s)
+      - ["word","count"]
+    parallelism: 1
+
+  - id: "redis-store-bolt"
+    className: "org.apache.storm.redis.bolt.RedisStoreBolt"
+    constructorArgs:
+      # Command line
+      -ref: "poolconfig"
+      -ref: "storeMapper"
+      # Output field(s)
+    parallelism: 1
 
   # TODO
   # Task: initialize RedisStoreBolt using poolConfig and storeMapper
@@ -73,6 +101,24 @@ bolts:
 streams:
   # TODO
   # Task: pipe output of sentences generating spout to split bolt
+  - name: "Spout --> Splitter"
+    from: "sentence-spout"
+    to: "splitter-bolt"
+    grouping:
+      type: SHUFFLE
+
+   - name: "Splitter --> Counter"
+     from: "splitter-bolt"
+     to:   "counter-bolt"
+     grouping:
+      type: FIELDS
+      args: ["word"] 
+
+   - name:   "Counter --> redisbolt" 
+     from: "counter-bolt"
+     to:  "redis-store-bolt"
+     grouping:
+      type: SHUFFLE
 
   # TODO
   # Task: pipe output of split bolt to word count bolt
