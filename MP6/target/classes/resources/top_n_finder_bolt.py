@@ -29,7 +29,7 @@ class TopNFinderBolt(storm.BasicBolt):
               the algorithm we used when we developed the auto-grader is maintaining a N size min-heap
         '''
         word = tup.values[0]
-        count = tup.values[1]
+        count = float(tup.values[1])
         storm.logInfo("Emitting laida lasan %s:%s" % (word, count))
 
         self._topN[word]=count
