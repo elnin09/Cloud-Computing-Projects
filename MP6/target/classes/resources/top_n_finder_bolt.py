@@ -35,7 +35,7 @@ class TopNFinderBolt(storm.BasicBolt):
         self._len +=1
 
         if self._len>10:
-            key_to_delete = max(self._topN, key=lambda k: self._topN[k])
+            key_to_delete = min(self._topN, key=lambda k: self._topN[k])
             del self._topN[key_to_delete]
         
         outtopN = "topN"
