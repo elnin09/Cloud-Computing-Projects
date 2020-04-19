@@ -20,15 +20,15 @@ public class TopNStoreMapper implements RedisStoreMapper {
 
   @Override
   public String getKeyFromTuple(final ITuple tuple) {
-    return tuple.getStringByField("word");
+    return tuple.getStringByField("outtopN");
     // End
   }
 
   @Override
   public String getValueFromTuple(final ITuple tuple) 
   {
-    long count = tuple.getLongByField("count");
-    return String.valueOf(count);
+    return tuple.getStringByField("values");
+    
 		// End
   }
 }
