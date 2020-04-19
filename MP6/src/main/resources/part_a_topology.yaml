@@ -26,6 +26,7 @@ config:
     # set this to true if you want to see more debug log
     # set it to false before submitting
     topology.debug: false
+    input.file: "/tmp/data.txt"
     # Hint: you can set input file path here
     # make sure it's "/tmp/data.txt" in your final submission
 
