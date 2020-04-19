@@ -1,4 +1,4 @@
-# Licensed to the Apache Software Foundation (ASF) under one
+ #Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
@@ -16,26 +16,20 @@
 
 ---
 
-# topology definition
-# name to be used when submitting
-name: "part-D"
 
-# TODO
-# Task: implement your topology for part d
+name: "part-C"
 
-# topology configuration
-# this will be passed to the submitter as a map of config options
+
 config:
     storm.local.hostname: "localhost"
     topology.max.task.parallelism: 3
     # set this to true if you want to see more debug log
     # set it to false before submitting
     topology.debug: false
+    #input.file: "/tmp/data.txt"
+    input.file: "/mp6/solution/CloudComputing/data.txt"
     # Hint: you can set input file path here
     # make sure it's "/tmp/data.txt" in your final submission
-
-    # Hint: set N here
-    # make sure it's 10 in your final submission
 
 components:
   - id: "poolConfig"
@@ -47,21 +41,84 @@ components:
       - "uiuc_cs498_mp6"
       - 0
 
-  # TODO
-  # Task: implement the redis store mapper
-  # src/main/java/edu/illinois/storm/TopNStoreMapper.java
-  # redis hash key for part D is "partDTopN"
+  - id: "storeMapper"
+    className: "edu.illinois.storm.WordCountStoreMapper"
+    constructorArgs:
+      - "partDTopN"
 
-# spout definitions
+
 spouts:
+  - id: "spout"
+    className: "org.apache.storm.flux.wrappers.spouts.FluxShellSpout"
+    constructorArgs:
+      # Command line
+      - ["python", "file_reader_spout.py"]
+      # Output field(s)
+      - ["line"]
+    # parallelism hint
+    parallelism: 1
 
-# bolt definitions
+
 bolts:
-  # Hint: the new top N tracking bolt you need implement in this part is
-  # multilang/resources/top_n_finder_bolt.py
-  # You need to load N from conf when initialize the bolt
+  - id: "split"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "normalizer_bolt.py"]
+      # Output field(s)
+      - ["word"]
+    parallelism: 1
 
-# stream definitions
-# stream definitions define connections between spouts and bolts.
+  - id: "count"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "word_count_bolt.py"]
+      # Output field(s)
+      - ["word","count"]
+    parallelism: 1
+
+  - id: "topN"
+    className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
+    constructorArgs:
+      # Command line
+      - ["python", "top_n_finder_bolt.py"]
+      # Output field(s)
+      - ["word","count"]
+    parallelism: 1    
+ 
+
+  - id: "store"
+    className: "org.apache.storm.redis.bolt.RedisStoreBolt"
+    constructorArgs:
+      - ref: "poolConfig"
+      - ref: "storeMapper"
+    parallelism: 1
+
+
 streams:
-  # Hint: add new top N finder bolt into the topology
+  - name: "spout --> split"
+    from: "spout"
+    to: "split"
+    grouping:
+      type: SHUFFLE
+
+  - name: "split --> count"
+    from: "split"
+    to: "count"
+    grouping:
+      type: FIELDS
+      args: ["word"]
+
+  - name: "count --> topN"
+    from: "count"
+    to: "topN"
+    grouping:
+      type: SHUFFLE
+  
+  - name: "topN --> store"
+    from: "topN"
+    to: "store"
+    grouping:
+      type: SHUFFLE
+  
