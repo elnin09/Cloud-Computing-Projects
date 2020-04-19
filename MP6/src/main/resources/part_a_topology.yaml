@@ -106,8 +106,7 @@ streams:
     to: "splitter-bolt"
     grouping:
       type: SHUFFLE
-
-
+  
   - name: "Splitter --> Counter"
     from: "splitter-bolt"
     to:   "counter-bolt"
