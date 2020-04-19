@@ -14,9 +14,9 @@ class FileReaderSpout(storm.Spout):
         self._complete = False
 
         storm.logInfo("Spout instance starting...")
-        self._myreaderfile = self._conf[input.file] 
-        self._myreadfilepointer = open(self._myreaderfile)
-        storm.logInfo("%s",self._myreaderfile)
+        #self._myreaderfile = self._conf[input.file] 
+        self._myreadfilepointer = open("/mp6/solution/CloudComputing/data.txt")
+        #storm.logInfo("%s",self._myreaderfile)
         storm.logInfo("see this fucked up thing")
 
         # TODO:
