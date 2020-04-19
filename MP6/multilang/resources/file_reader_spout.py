@@ -16,6 +16,8 @@ class FileReaderSpout(storm.Spout):
         storm.logInfo("Spout instance starting...")
         self._myreaderfile = self._conf[input.file] 
         self._myreadfilepointer = open(self._myreaderfile)
+        storm.logInfo("%s",self._myreaderfile)
+        storm.logInfo("see this fucked up thing")
 
         # TODO:
         # Task: Initialize the file reader
@@ -29,7 +31,8 @@ class FileReaderSpout(storm.Spout):
         storm.logInfo("%s",line)
         storm.emit([line])
         # Task 2: don't forget to sleep for 1 second when the file is entirely read to prevent a busy-loop
-        sleep(1)
+        if not line:
+            sleep(1)
         pass
         # End
 
