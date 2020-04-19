@@ -111,8 +111,8 @@ streams:
      from: "splitter-bolt"
      to:   "counter-bolt"
      grouping:
-      type: FIELDS
-      args: ["word"] 
+      -type: FIELDS
+      -args: ["word"] 
 
    - name:   "Counter --> redisbolt" 
      from: "counter-bolt"

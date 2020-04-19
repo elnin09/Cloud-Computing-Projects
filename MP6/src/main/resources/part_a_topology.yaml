@@ -107,14 +107,15 @@ streams:
     grouping:
       type: SHUFFLE
 
-   - name: "Splitter --> Counter"
+
+  - name: "Splitter --> Counter"
      from: "splitter-bolt"
      to:   "counter-bolt"
      grouping:
-      type: FIELDS
-      args: ["word"] 
+      -type: FIELDS
+      -args: ["word"] 
 
-   - name:   "Counter --> redisbolt" 
+  - name:   "Counter --> redisbolt" 
      from: "counter-bolt"
      to:  "redis-store-bolt"
      grouping:
