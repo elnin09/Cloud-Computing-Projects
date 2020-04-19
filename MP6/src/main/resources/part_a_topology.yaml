@@ -28,7 +28,6 @@ config:
     topology.max.task.parallelism: 3
     # set this to true if you want to see more debug log
     topology.debug: true
-    mp4.datafile: "/grader/MP4Grader/data.txt"
 
 components:
   - id: "poolConfig"
@@ -37,7 +36,7 @@ components:
       - "localhost"
       - 6379
       - 2000
-      - "uiuc_cs498_mp4"
+      - "uiuc_cs498_mp6"
       - 0
 
   - id: "storeMapper"
@@ -66,7 +65,7 @@ bolts:
       - ["python", "split_sentence_bolt.py"]
       # Output field(s)
       - ["word"]
-    parallelism: 8
+    parallelism: 1
 
   - id: "count"
     className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
@@ -75,7 +74,7 @@ bolts:
       - ["python", "word_count_bolt.py"]
       # Output field(s)
       - ["word","count"]
-    parallelism: 12
+    parallelism: 1
 
   - id: "store"
     className: "org.apache.storm.redis.bolt.RedisStoreBolt"
