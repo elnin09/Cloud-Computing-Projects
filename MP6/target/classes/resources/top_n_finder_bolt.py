@@ -40,7 +40,7 @@ class TopNFinderBolt(storm.BasicBolt):
             del self._topN[key_to_delete]
         
         mytopN = "top-N"
-        partDTopN= ""
+        values= ""
 
         for i in self._topN.keys():
             values = values + "," + i
