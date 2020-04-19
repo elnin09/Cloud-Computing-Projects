@@ -46,7 +46,7 @@ class TopNFinderBolt(storm.BasicBolt):
             if counter == 0:
                 values = values + i
             else:
-                values = values + "," + i
+                values = values + ", " + i
             counter += 1
          
         storm.logInfo("Emitting %s:%s" % (mytopN, values))
