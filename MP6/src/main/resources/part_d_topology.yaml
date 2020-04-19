@@ -42,7 +42,7 @@ components:
       - 0
 
   - id: "storeMapper"
-    className: "edu.illinois.storm.WordCountStoreMapper"
+    className: "edu.illinois.storm.TopNStoreMapper"
     constructorArgs:
       - "partDTopN"
 
