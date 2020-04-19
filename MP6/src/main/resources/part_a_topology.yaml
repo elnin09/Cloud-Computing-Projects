@@ -39,7 +39,10 @@ components:
       - "uiuc_cs498_mp6"
       - 0
 
-
+  - id: "storeMapper"
+    className: "edu.illinois.storm.WordCountStoreMapper"
+    constructorArgs:
+      - "partAWordCount"
 
 # spout definitions
 spouts:
