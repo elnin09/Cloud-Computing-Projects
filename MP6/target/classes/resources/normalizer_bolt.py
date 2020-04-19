@@ -25,8 +25,9 @@ class NormalizerBolt(storm.BasicBolt):
         # Task 2: remove the common words
         line = tup.values[0]
         words = re.split("[^a-zA-Z0-9-]",line)
-        for word in words.lower():
+        for word in words:
             if word not in self._common_words:
+                word = word.lower()
                 storm.emit([word])
 
             
