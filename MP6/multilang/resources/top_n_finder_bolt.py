@@ -44,6 +44,8 @@ class TopNFinderBolt(storm.BasicBolt):
         for i in self._topN.keys():
             values = values + "," + "i"
          
+        storm.logInfo("betichod") 
+        storm.logInfo("Emitting %s:%s" % (outtopN, values))
         storm.emit([outtopN,values])
 
         pass
