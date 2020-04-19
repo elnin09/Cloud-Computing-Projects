@@ -18,7 +18,7 @@ class SplitBolt(storm.BasicBolt):
         words = tup.values[0].split()
         for word in words:
             storm.logInfo("Emitting %s" % word)
-            storm.emit(word)
+            storm.emit([word])
         pass
         # End
 

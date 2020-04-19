@@ -27,7 +27,7 @@ class SentenceSpout(storm.Spout):
         # Note: only generate one sentence in this function
         sentence = random.choice(SENTENCES)
         storm.logInfo("Emiting %s" % sentence)
-        storm.emit(sentence)
+        storm.emit([sentence])
         pass
         # End
 
