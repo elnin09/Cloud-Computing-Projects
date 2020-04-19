@@ -44,7 +44,7 @@ components:
   - id: "storeMapper"
     className: "edu.illinois.storm.WordCountStoreMapper"
     constructorArgs:
-      - "partAWordCount"
+      - "partBWordCount"
 
 
 spouts:
