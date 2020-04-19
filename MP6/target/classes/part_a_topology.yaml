@@ -92,6 +92,10 @@ bolts:
       # Output field(s)
     parallelism: 1
 
+  - id: "log"
+    className: "org.apache.storm.flux.wrappers.bolts.LogInfoBolt"
+    parallelism: 1
+
   # TODO
   # Task: initialize RedisStoreBolt using poolConfig and storeMapper
   # ClassName is "org.apache.storm.redis.bolt.RedisStoreBolt"
@@ -120,6 +124,12 @@ streams:
     grouping:
       type: SHUFFLE
 
+  - name: "Counter -> Log"
+    from: "counter-bolt"
+    to: "log"
+    grouping:
+      type: SHUFFLE
+      
   # TODO
   # Task: pipe output of split bolt to word count bolt
   # Hint: choose the right grouping type to make problem easier
