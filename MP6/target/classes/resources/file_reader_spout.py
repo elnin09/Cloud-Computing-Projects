@@ -28,11 +28,16 @@ class FileReaderSpout(storm.Spout):
         # TODO:
         # Task 1: read the next line and emit a tuple for it
         line = self._myreadfilepointer.readline()
-        storm.logInfo("%s" %line)
-        storm.emit([line])
-        # Task 2: don't forget to sleep for 1 second when the file is entirely read to prevent a busy-loop
-        if not line:
+        if line:
+            storm.logInfo("%s" %line)
+            storm.emit([line])
+        else:
+            storm.emit("End of file")
             sleep(1)
+
+        # Task 2: don't forget to sleep for 1 second when the file is entirely read to prevent a busy-loop
+
+            
         pass
         # End
 
