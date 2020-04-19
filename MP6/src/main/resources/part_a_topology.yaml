@@ -30,6 +30,7 @@ config:
     topology.debug: true
     # Hint: you can set input file path here
     # make sure it's "/tmp/data.txt" in your final submission
+    
 
 components:
   - id: "poolConfig"
@@ -40,6 +41,10 @@ components:
       - 2000
       - "uiuc_cs498_mp6"
       - 0
+  - id: "storeMapper"
+    className: "edu.illinois.storm.WordCountStoreMapper"
+    constructorArgs:
+      - "partAWordCount"
 
   # TODO
   # Task: implement the redis store mapper
@@ -57,6 +62,7 @@ spouts:
       # Output field(s)
       - ["sentence"]
     parallelism: 1
+
 bolts:
 
   - id: "splitter-bolt"
