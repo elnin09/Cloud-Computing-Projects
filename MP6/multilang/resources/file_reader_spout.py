@@ -28,7 +28,7 @@ class FileReaderSpout(storm.Spout):
         # TODO:
         # Task 1: read the next line and emit a tuple for it
         line = self._myreadfilepointer.readline()
-        line = line.lower()
+        #line = line.lower()
         if line:
             storm.logInfo("%s" %line)
             storm.emit([line])
