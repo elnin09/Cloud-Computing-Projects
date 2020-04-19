@@ -1,4 +1,4 @@
- Licensed to the Apache Software Foundation (ASF) under one
+ #Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
@@ -27,7 +27,10 @@ config:
     storm.local.hostname: "localhost"
     topology.max.task.parallelism: 3
     # set this to true if you want to see more debug log
-    topology.debug: true
+    # set it to false before submitting
+    topology.debug: false
+    # Hint: you can set input file path here
+    # make sure it's "/tmp/data.txt" in your final submission
 
 components:
   - id: "poolConfig"
