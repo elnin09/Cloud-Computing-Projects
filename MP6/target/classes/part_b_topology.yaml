@@ -17,7 +17,7 @@
 ---
 
 
-name: "part-A"
+name: "part-B"
 
 
 config:
@@ -54,7 +54,7 @@ spouts:
       # Command line
       - ["python", "file_reader_spout.py"]
       # Output field(s)
-      - ["line"]
+      - ["sentence"]
     # parallelism hint
     parallelism: 1
 

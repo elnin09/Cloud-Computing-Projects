@@ -1,4 +1,5 @@
 import storm
+import re
 
 
 class NormalizerBolt(storm.BasicBolt):
@@ -22,6 +23,12 @@ class NormalizerBolt(storm.BasicBolt):
         # TODO:
         # Task 1: make the words all lower case
         # Task 2: remove the common words
+        line = tup.values[0]
+        words = re.split("[^a-zA-Z0-9-]",line)
+        for word in words and word not in self._common_words:
+            storm.emit([word])
+
+            #storm.logInfo("Emitting %s" % word)
         pass
         # End
 
