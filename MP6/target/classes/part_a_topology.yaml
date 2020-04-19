@@ -27,7 +27,7 @@ config:
     topology.max.task.parallelism: 3
     # set this to true if you want to see more debug log
     # set it to false before submitting
-    topology.debug: false
+    topology.debug: true
     # Hint: you can set input file path here
     # make sure it's "/tmp/data.txt" in your final submission
 
@@ -129,7 +129,7 @@ streams:
     to: "log"
     grouping:
       type: SHUFFLE
-      
+
   # TODO
   # Task: pipe output of split bolt to word count bolt
   # Hint: choose the right grouping type to make problem easier
