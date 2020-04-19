@@ -18,7 +18,9 @@ class CountBolt(storm.BasicBolt):
         # TODO
         # Task: word count
         # Hint: using instance variable to tracking the word count
-        storm.emit(["whatever",1])
+        word = "string"
+        count = 1
+        storm.emit([word,count])
         pass
         # End
 
