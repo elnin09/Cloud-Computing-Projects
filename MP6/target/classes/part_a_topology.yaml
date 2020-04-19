@@ -111,30 +111,7 @@ bolts:
 streams:
   # TODO
   # Task: pipe output of sentences generating spout to split bolt
-  - name: "Spout --> Splitter"
-    from: "sentence-spout"
-    to: "splitter-bolt"
-    grouping:
-      type: SHUFFLE
-  
-  - name: "Splitter --> Counter"
-    from: "splitter-bolt"
-    to:   "counter-bolt"
-    grouping:
-      type: FIELDS
-      args: ["word"] 
 
-  - name:   "Counter --> redisbolt" 
-    from: "counter-bolt"
-    to:  "redis-store-bolt"
-    grouping:
-      type: SHUFFLE
-
-  - name: "Counter -> Log"
-    from: "counter-bolt"
-    to: "log"
-    grouping:
-      type: SHUFFLE
 
   # TODO
   # Task: pipe output of split bolt to word count bolt
