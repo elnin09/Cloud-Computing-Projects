@@ -39,15 +39,15 @@ class TopNFinderBolt(storm.BasicBolt):
             key_to_delete = min(self._topN.keys(), key=lambda k: self._topN[k])
             del self._topN[key_to_delete]
         
-        outtopN = "topN"
-        values= ""
+        topN = "top-N"
+        partDTopN= ""
 
         for i in self._topN.keys():
             values = values + "," + i
          
         storm.logInfo("betichod") 
-        storm.logInfo("Emitting %s:%s" % (outtopN, values))
-        storm.emit([outtopN,values])
+        storm.logInfo("Emitting %s:%s" % (topN, values))
+        storm.emit([topN,values])
 
         pass
         # End
