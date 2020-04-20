@@ -56,7 +56,7 @@ spouts:
       # Output field(s)
       - ["line"]
     # parallelism hint
-    parallelism: 1
+    parallelism: 3
 
 
 bolts:
@@ -67,7 +67,7 @@ bolts:
       - ["python", "normalizer_bolt.py"]
       # Output field(s)
       - ["word"]
-    parallelism: 1
+    parallelism: 3
 
   - id: "count"
     className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
@@ -76,7 +76,7 @@ bolts:
       - ["python", "word_count_bolt.py"]
       # Output field(s)
       - ["word","count"]
-    parallelism: 1
+    parallelism: 3
 
   - id: "topN"
     className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
@@ -85,7 +85,7 @@ bolts:
       - ["python", "top_n_finder_bolt.py"]
       # Output field(s)
       - ["top-N","values"]
-    parallelism: 1
+    parallelism: 3
  
 
   - id: "store"
@@ -93,7 +93,7 @@ bolts:
     constructorArgs:
       - ref: "poolConfig"
       - ref: "storeMapper"
-    parallelism: 1
+    parallelism: 3
 
 
 streams:

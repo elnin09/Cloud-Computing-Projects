@@ -33,7 +33,7 @@ class TopNFinderBolt(storm.BasicBolt):
         the algorithm we used when we developed the auto-grader is maintaining a N size min-heap
         '''
         word = tup.values[0]
-        count = int(tup.values[1])
+        count = float(tup.values[1])
 
         new_word_count = WordCount(word, count)
 
@@ -60,7 +60,7 @@ class TopNFinderBolt(storm.BasicBolt):
         storm.emit(["top-N", self.printvalues()])
         pass
 
-
+        
 
     def printvalues(self):
         words = [word_count.word for word_count in self._top_N_heap]

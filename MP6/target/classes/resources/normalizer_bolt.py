@@ -14,7 +14,7 @@ class NormalizerBolt(storm.BasicBolt):
             "she", "as", "you", "do", "this", "but", "his", "by", "from",
             "they", "we", "her", "or", "will", "my", "one", "all", "s", "if",
             "any", "our", "may", "your", "these", "d", " ", "me", "so", "what",
-            "him", "their","","  "
+            "him", "their"
         ]
 
         storm.logInfo("Normalizer bolt instance starting...")
@@ -23,12 +23,12 @@ class NormalizerBolt(storm.BasicBolt):
         # TODO:
         # Task 1: make the words all lower case
         # Task 2: remove the common words
-        line = tup.values[0].rstrip('\n')
+        line = tup.values[0]
         words = re.split("[^a-zA-Z0-9-]",line)
         for word in words:
-            if word not in self._common_words:
-                word = word.lower()
-                storm.emit([word])
+            new_word = word.lower()
+            if new_word not in self._common_words:
+                storm.emit([new_word])
 
             
 
