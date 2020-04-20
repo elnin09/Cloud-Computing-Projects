@@ -26,10 +26,9 @@ class NormalizerBolt(storm.BasicBolt):
         line = tup.values[0]
         words = re.split("[^a-zA-Z0-9-]",line)
         for word in words:
-            new_word = word
+            new_word = word.lower()
             if new_word not in self._common_words:
                 storm.logInfo("The word is %s"%new_word)
-                new_word=new_word.lower()
                 storm.emit([new_word])
 
             
