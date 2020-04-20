@@ -57,12 +57,12 @@ class TopNFinderBolt(storm.BasicBolt):
                 heapq.heapreplace(self._top_N_heap, new_word_count)
                 storm.logInfo("Add word: %s, count: %d" % (word, count))
 
-        storm.emit(["top-N", self.print()])
+        storm.emit(["top-N", self.printvalues()])
         pass
 
 
 
-    def print(self):
+    def printvalues(self):
         words = [word_count.word for word_count in self._top_N_heap]
 
         return ", ".join(words)
