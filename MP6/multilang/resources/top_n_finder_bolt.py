@@ -4,7 +4,7 @@ from collections import Counter
 import storm
 
 
-class WordCountTuple:
+class WordCount:
 
     def __init__(self, word, count):
         self.word = word
@@ -35,7 +35,7 @@ class TopNFinderBolt(storm.BasicBolt):
         word = tup.values[0]
         count = int(tup.values[1])
 
-        new_word_count = WordCountTuple(word, count)
+        new_word_count = WordCount(word, count)
 
         if word in self._top_N_map:
             if count > self._top_N_map[word].count:
@@ -59,7 +59,7 @@ class TopNFinderBolt(storm.BasicBolt):
 
         storm.emit(["top-N", self.report()])
         pass
-    
+
 
 
     def report(self):
