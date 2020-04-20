@@ -64,7 +64,7 @@ bolts:
     className: "org.apache.storm.flux.wrappers.bolts.FluxShellBolt"
     constructorArgs:
       # Command line
-      - ["python", "normalizer_bolt.py"]
+      - ["python", "split_sentence_bolt.py"]
       # Output field(s)
       - ["word"]
     parallelism: 1
