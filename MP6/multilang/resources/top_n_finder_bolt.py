@@ -12,7 +12,6 @@ class TopNFinderBolt(storm.BasicBolt):
 
         storm.logInfo("Counter bolt instance starting...")
         self._topN = dict()
-        self._len = len(self._topN)
 
         # TODO:
         # Task: set N
@@ -30,9 +29,12 @@ class TopNFinderBolt(storm.BasicBolt):
         '''
         word = tup.values[0]
         count = float(tup.values[1])
-        storm.logInfo("Emitting %s:%s" % (word, count))
+        #storm.logInfo("Emitting %s:%s" % (word, count))
 
-        self._topN[word]=count
+        if word in self._topN.keys():
+            self._topN[word]=max((self._topN[word],count))
+        else:
+            self._topN[word]=count
         
 
         while len(self._topN) > 10:
