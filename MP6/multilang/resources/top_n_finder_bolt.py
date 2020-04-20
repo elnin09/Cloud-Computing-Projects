@@ -35,6 +35,8 @@ class TopNFinderBolt(storm.BasicBolt):
             if count > self._top_N_map[word].count:
                 self._top_N_map[word].count = count
                 heapq.heapify(self._top_N_heap)
+
+         #adding new elements if the element size is less than 10        
         elif len(self._top_N_heap) < self._N:
             self._top_N_map[word] = new_word_count
             heapq.heappush(self._top_N_heap, new_word_count)
