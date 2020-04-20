@@ -17,7 +17,7 @@ class FileReaderSpout(storm.Spout):
         #self._myreaderfile = self._conf[input.file] 
         self._myreadfilepointer = open("/mp6/solution/CloudComputing/data.txt")
         #storm.logInfo("%s",self._myreaderfile)
-        
+        #storm.logInfo("see this fucked up thing")
 
         # TODO:
         # Task: Initialize the file reader
@@ -30,6 +30,7 @@ class FileReaderSpout(storm.Spout):
         line = self._myreadfilepointer.readline()
         #line = line.lower()
         if line:
+            #storm.logInfo("%s" %line)
             storm.emit([line])
         else:
             sleep(1)

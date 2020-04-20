@@ -85,7 +85,7 @@ bolts:
       - ["python", "top_n_finder_bolt.py"]
       # Output field(s)
       - ["top-N","values"]
-    parallelism: 1    
+    parallelism: 1
  
 
   - id: "store"

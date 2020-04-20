@@ -27,7 +27,7 @@ public class TopNStoreMapper implements RedisStoreMapper {
   @Override
   public String getValueFromTuple(final ITuple tuple) 
   {
-    return tuple.getStringByField("values");
+    return tuple.getStringByField("set");
     
 		// End
   }
