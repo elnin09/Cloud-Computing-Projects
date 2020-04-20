@@ -1,4 +1,4 @@
-
+import time
 import heapq
 from collections import Counter
 
@@ -19,6 +19,7 @@ class TopNFinderBolt(storm.BasicBolt):
 
     def initialize(self, conf, context):
         self._top_words = Counter()
+        self._N = 10
         self._top_N_map = {}
         self._top_N_heap = []
 
