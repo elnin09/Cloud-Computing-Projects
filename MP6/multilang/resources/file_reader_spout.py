@@ -30,7 +30,7 @@ class FileReaderSpout(storm.Spout):
         line = self._myreadfilepointer.readline()
         #line = line.lower()
         if line:
-            #storm.logInfo("%s" %line)
+            storm.logInfo("%s" %line)
             storm.emit([line])
         else:
             sleep(1)

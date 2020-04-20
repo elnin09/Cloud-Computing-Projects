@@ -28,6 +28,7 @@ class NormalizerBolt(storm.BasicBolt):
         for word in words:
             new_word = word.lower()
             if new_word not in self._common_words:
+                storm.logInfo("The word is %s"%new_word)
                 storm.emit([new_word])
 
             
