@@ -1,4 +1,3 @@
-import time
 import heapq
 from collections import Counter
 
@@ -18,14 +17,21 @@ class WordCountTuple:
 class TopNFinderBolt(storm.BasicBolt):
 
     def initialize(self, conf, context):
+        self._conf = conf
+        self._context = context
+        storm.logInfo("Counter bolt instance starting...")
         self._top_words = Counter()
         self._N = 10
         self._top_N_map = {}
         self._top_N_heap = []
 
     def process(self, tup):
-        # TODO:
-
+        '''
+        TODO:
+        Task: keep track of the top N words
+        Hint: implement efficient algorithm so that it won't be shutdown before task finished
+        the algorithm we used when we developed the auto-grader is maintaining a N size min-heap
+        '''
         word = tup.values[0]
         count = int(tup.values[1])
 
@@ -40,6 +46,8 @@ class TopNFinderBolt(storm.BasicBolt):
         elif len(self._top_N_heap) < self._N:
             self._top_N_map[word] = new_word_count
             heapq.heappush(self._top_N_heap, new_word_count)
+
+         #find smallest word and replace it with new word    
         else:
             smallest_word_count = self._top_N_heap[0]
 
@@ -50,6 +58,9 @@ class TopNFinderBolt(storm.BasicBolt):
                 storm.logInfo("Add word: %s, count: %d" % (word, count))
 
         storm.emit(["top-N", self.report()])
+        pass
+    
+
 
     def report(self):
         words = [word_count.word for word_count in self._top_N_heap]
