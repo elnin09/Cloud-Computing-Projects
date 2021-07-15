@@ -10,9 +10,9 @@ def read(id,usecache,r):
     retval1 = r.get(id)
     if retval1 and usecache == "True":
         return json.loads(retval1)
-    cnx = mysql.connector.connect(user='admin', password='darmora123',
-                                  host='darmoraglobaldatabase-cluster-1.cluster-cc1lsummhvn7.us-east-1.rds.amazonaws.com',
-                                  database='mp11')
+    cnx = mysql.connector.connect(user='', password='',
+                                  host='',
+                                  database='')
     
     cursor = cnx.cursor()
     query = ("SELECT * FROM mp11 "
