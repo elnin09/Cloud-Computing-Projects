@@ -1,4 +1,4 @@
-#### Implementation of Write Through Cache using Redis. Cache used Redis Server(Docker Container) and DBServer used MySQL
+#### Implementation of Write Through Cache using Redis,MYSQL and AWS Lamnda. Cache used Redis Server(Docker Container) and DBServer used MySQL
 
 * The code is in lamda.py wherein Read and Write functions are implemented.
 * To test whether the cache is fulfilling read requests at a faster rate we have a flag if we should use cache or DB to read any particular request.
