@@ -1,4 +1,4 @@
-# MP0
-A Machine Programming Assignment for CS498: Cloud Computing Applications UIUC
-Spring 2018
-MP0 
+#### MP0
+* This is a warmup machine programming assignment 
+* WordCount program in python with some stop words provided that need to be eliminated.
+
