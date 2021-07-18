@@ -8,5 +8,5 @@
 * MP5 -> Use Apache Spark for fetching useful insights from datasets. (RDDs are used by Apache Spark)
 * MP6 -> Use Apache Storm Streaming for fetching useful insights.
 * MP7 -> Use apache hbase for CRUD operations using python & docker container.
-
+* MP11 -> Implementation of **Write Through Cache** using Redis,MYSQL and AWS Lamda
 
