@@ -7,5 +7,6 @@
 * MP4 -> Use Apache Hadoop for fetching useful insights from the books's dataset using Map Reduce. (HDFS is used for Apache Hadoop)
 * MP5 -> Use Apache Spark for fetching useful insights from datasets. (RDDs are used by Apache Spark)
 * MP6 -> Use Apache Storm Streaming for fetching useful insights.
+* MP7 -> Use apache hbase for CRUD operations using python & docker container.
 
 
