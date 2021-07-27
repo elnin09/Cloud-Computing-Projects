@@ -3,7 +3,7 @@
 ##### This is a set of mini projects on cloud computing 
 
 #### Tech/Tools Used:
-* AWS Lambda, AWS Load Balancers, DynamoDB , AWS LEX, Apache Hadoop , Apache Spark, Apache Storm, Apache Hbase, Apache SparkSQL , Redis ,MYSQL
+* Docker, AWS Lambda, AWS Load Balancers, DynamoDB , AWS LEX, Apache Hadoop , Apache Spark, Apache Storm, Apache Hbase, Apache SparkSQL , Redis ,MYSQL
 
 #### List of Projects 
 
